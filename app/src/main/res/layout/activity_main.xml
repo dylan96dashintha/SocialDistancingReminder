@@ -24,4 +24,12 @@
         tools:layout_editor_absoluteY="58dp"
         tools:text="PUBLIC PLACE" />
 
+    <Button
+        android:id="@+id/getStat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Covid Statistics"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="652dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
