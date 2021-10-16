@@ -1,10 +1,15 @@
-package com.example.socialdistancingreminder;
+package com.example.socialdistancingreminder.Activity;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.socialdistancingreminder.Model.CovidStatistics.CovidStat;
+import com.example.socialdistancingreminder.Model.CovidStatistics.CovidStatistics;
+import com.example.socialdistancingreminder.Model.CovidStatistics.CovidStatisticsAPI;
+import com.example.socialdistancingreminder.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
