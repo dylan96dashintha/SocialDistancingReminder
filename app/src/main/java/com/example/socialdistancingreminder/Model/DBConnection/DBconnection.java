@@ -18,9 +18,9 @@ public class DBconnection extends SQLiteOpenHelper {
     private static final String COL1 = "id";
     private static final String COL2 = "mac_address";
     private static final String COL3 = "device_name";
-    private static int COL4;
+    private static String COL4 = "isTrusted";
     private static final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+
-            " ("+COL1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+COL2+" VARCHAR(255) ,"+ COL3+" VARCHAR(225) ,"+ COL4+" int);";
+            " ("+COL1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+COL2+" VARCHAR(255) ,"+ COL3+" VARCHAR(225) ,"+ COL4+" varchar(2))";
     private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
     private Context context;
 
@@ -34,6 +34,7 @@ public class DBconnection extends SQLiteOpenHelper {
 
         try {
             db.execSQL(CREATE_TABLE);
+
         } catch (Exception e) {
             Log.e(TAG,""+e);
         }
@@ -52,13 +53,13 @@ public class DBconnection extends SQLiteOpenHelper {
 
     }
 
-    public boolean insertData(String mac_address, String device_name, int isTrusted)
+    public boolean insertData(String mac_address, String device_name, String isTrusted)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, mac_address);
         contentValues.put(COL3, device_name);
-        contentValues.put(String.valueOf(COL4), isTrusted);
+        contentValues.put(COL4, isTrusted);
         Log.d(TAG, "addData: Adding: mac Address: "+ mac_address +" device name:"+ device_name+" isTrusted:"+ isTrusted+" to "+TABLE_NAME);
         long result = db.insert(TABLE_NAME, null , contentValues);
         if (result == 1) {
@@ -71,8 +72,8 @@ public class DBconnection extends SQLiteOpenHelper {
     public ArrayList<DeviceList> getData()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String[] columns = {COL1,COL2,COL3};
-        Cursor cursor =db.query(TABLE_NAME,columns, String.valueOf(COL4=1),null,null,null,null,null);
+        String[] columns = {COL1,COL2,COL3, COL4};
+        Cursor cursor =db.query(TABLE_NAME,columns, null,null,null,null,null);
         StringBuffer buffer= new StringBuffer();
         ArrayList<DeviceList> deviceArrayList = new ArrayList<>();
         while (cursor.moveToNext())

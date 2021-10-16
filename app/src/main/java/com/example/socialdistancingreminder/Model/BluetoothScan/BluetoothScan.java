@@ -97,12 +97,17 @@ public class BluetoothScan extends AppCompatActivity implements Runnable {
                             Log.e(TAG, "alertbox open");
 
                             alertDialogBox.setAlertOpend(true);
-                            alertDialogBox.showTrustedDeviceAlertBox(device.getAddress(), device.getName());
+                            alertDialogBox.showTrustedDeviceAlertBox(device.getName(), device.getAddress(), dbconnection);
 
                             Log.e(TAG, "alertbox close");
                             // boolean isSucess = dbconnection.insertData(device.getAddress(), device.getName(),1);
                         }
                     }
+                }
+
+                if (deviceList.size() == 0) {
+                    alertDialogBox.setAlertOpend(true);
+                    alertDialogBox.showTrustedDeviceAlertBox(device.getName(), device.getAddress(), dbconnection);
                 }
                 Log.e(TAG, " type: "+ device.getAddress().getClass());
             } else {
