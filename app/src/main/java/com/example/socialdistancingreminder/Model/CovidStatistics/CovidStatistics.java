@@ -1,6 +1,4 @@
-package com.example.socialdistancingreminder;
-
-import java.util.ArrayList;
+package com.example.socialdistancingreminder.Model.CovidStatistics;
 
 public class CovidStatistics {
 
