@@ -4,32 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ccc8c0"
     tools:context=".Activity.MainActivity">
+    <!--set the source of an image view-->
+
 
     <Button
         android:id="@+id/trustPlaceBtn"
         android:layout_width="128dp"
         android:layout_height="87dp"
         android:text="Trusted Place"
-        app:backgroundTint="#FFFFFF"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="57dp" />
+        android:textColor="#000000"
+        app:backgroundTint="#4589ff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.149" />
 
     <Button
         android:id="@+id/publicPlaceBtn"
         android:layout_width="128dp"
         android:layout_height="87dp"
+        android:textColor="#000000"
         app:backgroundTint="#E91E63"
-        tools:layout_editor_absoluteX="252dp"
-        tools:layout_editor_absoluteY="58dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.149"
         tools:text="PUBLIC PLACE" />
 
     <Button
         android:id="@+id/getStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Covid Statistics"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="652dp" />
+        android:layout_width="114dp"
+        android:layout_height="71dp"
+        android:text="Covid-19 Updates"
+        android:textColor="#000000"
+        app:backgroundTint="#bdbdbd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <Button
+        android:id="@+id/getStat2"
+        android:layout_width="114dp"
+        android:layout_height="71dp"
+        android:text="Trusted Devices"
+        android:textColor="#000000"
+        app:backgroundTint="#bdbdbd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <Button
+        android:id="@+id/scan"
+        android:layout_width="151dp"
+        android:layout_height="123dp"
+        android:text="Scan"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.765" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="117dp"
+        android:layout_height="118dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/scan2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
