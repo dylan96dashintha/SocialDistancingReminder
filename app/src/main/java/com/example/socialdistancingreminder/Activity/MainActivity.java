@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public BluetoothScan blueScan;
     Button pulicPlaceButton;
     Button getStat;
+    Button trustedDevices;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +58,18 @@ public class MainActivity extends AppCompatActivity {
         getStat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewActivity();
+                openNewActivity(CovidStatisticActivity.class);
 
             }
         });
+        trustedDevices = (Button) findViewById(R.id.trustedDevices);
+        trustedDevices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewActivity(TrustedDevices.class);
 
+            }
+        });
 
 
     }
@@ -72,8 +80,10 @@ public class MainActivity extends AppCompatActivity {
         blueScan.unregister();
     }
 
-    public void openNewActivity(){
-        Intent intent = new Intent(this, CovidStatisticActivity.class);
+    public void openNewActivity(Class abc){
+        Intent intent = new Intent(this,abc );
         startActivity(intent);
     }
+
+
 }

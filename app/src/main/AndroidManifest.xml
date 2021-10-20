@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialDistancingReminder">
         <activity android:name=".Activity.CovidStatisticActivity"></activity>
+        <activity android:name=".Activity.TrustedDevices"></activity>
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

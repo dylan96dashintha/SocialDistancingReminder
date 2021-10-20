@@ -1,5 +1,4 @@
 package com.example.socialdistancingreminder.Model.BluetoothScan;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -117,7 +116,7 @@ public class BluetoothScan extends AppCompatActivity implements Runnable {
 
             // When discovery cycle finished
             if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                Log.e(TAG,"Scannning finished");
+                Log.e(TAG,"Scanning finished");
                 isFinished = true;
                 if (foundDevices == null || foundDevices.isEmpty()) {
                     //Toast.makeText(MainActivity.this, "No Devices", Toast.LENGTH_LONG).show();
