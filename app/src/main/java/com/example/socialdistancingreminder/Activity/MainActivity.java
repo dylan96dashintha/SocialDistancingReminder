@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,10 +20,23 @@ public class MainActivity extends AppCompatActivity {
     public BluetoothScan blueScan;
     Button pulicPlaceButton;
     Button getStat;
+    Button getTrustedDevices;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+// ----------TRUSTED DEVICES------------
+        getTrustedDevices=(Button)getTrustedDevices.findViewById(R.id.trustedDevices);
+        getTrustedDevices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTrustedDevices();
+            }
+        });
+
+//-------------REST------------------
         setContentView(R.layout.activity_main);
         int permissionCheck = this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
         permissionCheck += this.checkSelfPermission("Manifest.permission.ACCESS_COARSE_LOCATION");
@@ -75,5 +89,10 @@ public class MainActivity extends AppCompatActivity {
     public void openNewActivity(Class javaClass){
         Intent intent = new Intent(this, javaClass);
         startActivity(intent);
+    }
+    public void openTrustedDevices(){
+        Intent intent = new Intent(this, ListAdapter.class);
+        startActivity(intent);
+
     }
 }
