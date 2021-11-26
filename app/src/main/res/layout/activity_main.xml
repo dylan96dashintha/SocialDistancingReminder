@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.94" />
 
     <Button
-        android:id="@+id/getStat2"
+        android:id="@+id/trustedDevices"
         android:layout_width="114dp"
         android:layout_height="71dp"
         android:text="Trusted Devices"
