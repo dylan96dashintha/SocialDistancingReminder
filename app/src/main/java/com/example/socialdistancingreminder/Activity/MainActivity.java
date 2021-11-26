@@ -27,16 +27,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-// ----------TRUSTED DEVICES------------
-        getTrustedDevices=(Button)getTrustedDevices.findViewById(R.id.trustedDevices);
-        getTrustedDevices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openTrustedDevices();
-            }
-        });
-
-//-------------REST------------------
         setContentView(R.layout.activity_main);
         int permissionCheck = this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
         permissionCheck += this.checkSelfPermission("Manifest.permission.ACCESS_COARSE_LOCATION");
@@ -45,6 +35,18 @@ public class MainActivity extends AppCompatActivity {
             this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1001); //Any number
         }
         blueScan = new BluetoothScan(MainActivity.this);
+
+
+// ----------TRUSTED DEVICES------------
+        getTrustedDevices= (Button) findViewById(R.id.trustedDevices);
+        getTrustedDevices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openTrustedDevices();
+            }
+        });
+
+//-------------REST------------------
 
         pulicPlaceButton = (Button) findViewById(R.id.publicPlaceBtn);
 
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void openTrustedDevices(){
-        Intent intent = new Intent(this, ListAdapter.class);
+        Intent intent = new Intent(this, testActivity2.class);
         startActivity(intent);
 
     }

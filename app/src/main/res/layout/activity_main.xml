@@ -85,12 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/scan2" />
+        app:srcCompat="@drawable/scan" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listview"
-        tools:listitem="@layout/list_item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

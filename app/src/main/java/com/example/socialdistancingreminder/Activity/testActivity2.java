@@ -1,6 +1,7 @@
 package com.example.socialdistancingreminder.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.socialdistancingreminder.R;
 import android.os.Bundle;
 
 
