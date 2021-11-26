@@ -87,28 +87,34 @@ public class BluetoothScan extends AppCompatActivity implements Runnable {
                 int rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE);
                 float d = 10 ^ ((-69 - rssi)/20);
                 Log.e(TAG, "name: "+device.getName()+" Address: "+device.getAddress()+" device : RSSI: "+rssi);
-                ArrayList<DeviceList> deviceList = dbconnection.getData();
-                for (DeviceList trustedeDevice: deviceList) {
-                    if (!alertDialogBox.isAlertOpend()) {
-                        Log.e(TAG, "devicemac : " + trustedeDevice.getMacAddress());
-                        if (trustedeDevice.getMacAddress().equals(device.getAddress())) {
-                            Log.e(TAG, "trusted device");
-                        } else {
-                            Log.e(TAG, "alertbox open");
-
-                            alertDialogBox.setAlertOpend(true);
-                            alertDialogBox.showTrustedDeviceAlertBox(device.getName(), device.getAddress(), dbconnection);
-
-                            Log.e(TAG, "alertbox close");
-                            // boolean isSucess = dbconnection.insertData(device.getAddress(), device.getName(),1);
-                        }
-                    }
-                }
-
-                if (deviceList.size() == 0) {
+                boolean isTrusted = dbconnection.getDevice(device.getAddress());
+                if (isTrusted && !alertDialogBox.isAlertOpend()) {
                     alertDialogBox.setAlertOpend(true);
                     alertDialogBox.showTrustedDeviceAlertBox(device.getName(), device.getAddress(), dbconnection);
                 }
+                //ArrayList<DeviceList> deviceList = dbconnection.getData();
+//                for (DeviceList trustedeDevice: deviceList) {
+//                    if (!alertDialogBox.isAlertOpend()) {
+//                        Log.e(TAG, "devicemac : " + trustedeDevice.getMacAddress());
+//                        if (trustedeDevice.getMacAddress().equals(device.getAddress())) {
+//                            Log.e(TAG, "trusted device");
+//                        } else {
+//                            Log.e(TAG, "alertbox open");
+//
+//                            alertDialogBox.setAlertOpend(true);
+//                            alertDialogBox.showTrustedDeviceAlertBox(device.getName(), device.getAddress(), dbconnection);
+//
+//                            Log.e(TAG, "alertbox close");
+//                            // boolean isSucess = dbconnection.insertData(device.getAddress(), device.getName(),1);
+//                        }
+//                    }
+//                }
+
+
+//                if (deviceList.size() == 0) {
+//                    alertDialogBox.setAlertOpend(true);
+//                    alertDialogBox.showTrustedDeviceAlertBox(device.getName(), device.getAddress(), dbconnection);
+//                }
                 Log.e(TAG, " type: "+ device.getAddress().getClass());
             } else {
                 Log.e(TAG,"else:: "+isFinished);

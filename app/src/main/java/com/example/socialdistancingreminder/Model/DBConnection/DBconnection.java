@@ -73,7 +73,7 @@ public class DBconnection extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] columns = {COL1,COL2,COL3, COL4};
-        Cursor cursor =db.query(TABLE_NAME,columns, null,null,null,null,null);
+        Cursor cursor =db.query(TABLE_NAME,columns,"isTrusted = 1", null,null,null,null,null);
         StringBuffer buffer= new StringBuffer();
         ArrayList<DeviceList> deviceArrayList = new ArrayList<>();
         while (cursor.moveToNext())
@@ -86,6 +86,19 @@ public class DBconnection extends SQLiteOpenHelper {
             deviceArrayList.add(deviceList);
         }
         return deviceArrayList;
+    }
+
+    public boolean getDevice(String macAddress) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] columns = {COL1,COL2,COL3, COL4};
+        Log.d(TAG, "getDevice: getDevice: mac Address: "+ macAddress);
+        Cursor cursor =db.query(TABLE_NAME,columns,"mac_address"+  "=\"" + macAddress + "\"", null,null,null,null,null);
+        Log.d(TAG, "getDevice: cursor_info: cursor: "+ cursor.getCount());
+        if (cursor.getCount() == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

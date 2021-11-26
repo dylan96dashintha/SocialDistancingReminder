@@ -29,7 +29,7 @@ public class AlertDialogBox {
     public void showTrustedDeviceAlertBox(String deviceName, String macAddress, DBconnection dbconnection) {
 
 
-        dialogBuilder.setMessage("Are you sure, You wanted to make decision");
+        dialogBuilder.setMessage("Are you sure, You wanted to add this device  "+ deviceName+" With macaddress"+ macAddress);
         dialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {

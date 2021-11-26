@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         getStat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewActivity();
+                openNewActivity(CovidStatisticActivity.class);
 
             }
         });
@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         blueScan.unregister();
     }
 
-    public void openNewActivity(){
-        Intent intent = new Intent(this, CovidStatisticActivity.class);
+    public void openNewActivity(Class javaClass){
+        Intent intent = new Intent(this, javaClass);
         startActivity(intent);
     }
 }
