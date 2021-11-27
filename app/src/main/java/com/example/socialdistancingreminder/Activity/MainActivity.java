@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.socialdistancingreminder.Model.BluetoothScan.BluetoothScan;
 import com.example.socialdistancingreminder.R;
@@ -19,8 +20,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public BluetoothScan blueScan;
     Button pulicPlaceButton;
+    Button trustedPlaceButton;
     Button getStat;
     Button getTrustedDevices;
+    ImageView img;
+    protected Thread thread;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -34,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG,"permission");
             this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1001); //Any number
         }
-        blueScan = new BluetoothScan(MainActivity.this);
+        img = (ImageView) findViewById(R.id.imageView);
+        blueScan = new BluetoothScan(MainActivity.this, img);
 
 
 // ----------TRUSTED DEVICES------------
@@ -55,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //blueScan = new BluetoothScan(MainActivity.this);
-                Thread thread = new Thread(blueScan);
+                thread = new Thread(blueScan);
                 thread.start();
 
                  Log.e(TAG,"isAlive Thread : "+thread.currentThread().isAlive());
@@ -78,6 +83,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // trusted place: stop bluetooth scanning
+        trustedPlaceButton = (Button) findViewById(R.id.trustPlaceBtn);
+
+        trustedPlaceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
     }

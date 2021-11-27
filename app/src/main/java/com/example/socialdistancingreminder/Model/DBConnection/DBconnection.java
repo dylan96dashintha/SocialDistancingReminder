@@ -101,4 +101,16 @@ public class DBconnection extends SQLiteOpenHelper {
         }
     }
 
+    public boolean getUntrustedDevice(String macAddress) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] columns = {COL1,COL2,COL3, COL4};
+        Log.d(TAG, "getDevice: getDevice: mac Address: "+ macAddress);
+        Cursor cursor =db.query(TABLE_NAME,columns, "mac_address"+  "=\"" + macAddress + "\""+ " AND " + "isTrusted = 0" , null,null,null,null,null);
+        Log.d(TAG, "getDevice: cursor_info: cursorUntrusted: "+ cursor.getCount());
+        if (cursor.getCount() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

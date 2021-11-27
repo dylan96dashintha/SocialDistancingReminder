@@ -8,13 +8,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.util.Log;
-
+import android.widget.ImageView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.socialdistancingreminder.Model.AlertDialog.AlertDialogBox;
 import com.example.socialdistancingreminder.Model.DBConnection.DBconnection;
 import com.example.socialdistancingreminder.Model.DBConnection.DeviceList;
+import com.example.socialdistancingreminder.R;
 
 import java.util.ArrayList;
 
@@ -24,13 +25,15 @@ public class BluetoothScan extends AppCompatActivity implements Runnable {
     private static boolean isFinished;
     private static DBconnection dbconnection;
     private static AlertDialogBox alertDialogBox;
+    ImageView img;
     //public boolean isAlertOpened;
     ArrayList<BluetoothDevice> foundDevices;
 
     BluetoothAdapter BTAdapter;
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public BluetoothScan(Context context) {
+    public BluetoothScan(Context context, ImageView img) {
         this.context = context;
+        this.img = img;
         isFinished = true;
         dbconnection = new DBconnection(context); //DB connection
         alertDialogBox = new AlertDialogBox(context);
@@ -86,10 +89,17 @@ public class BluetoothScan extends AppCompatActivity implements Runnable {
                 int rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE);
                 float d = 10 ^ ((-69 - rssi)/20);
                 Log.e(TAG, "name: "+device.getName()+" Address: "+device.getAddress()+" device : RSSI: "+rssi);
-                boolean isTrusted = dbconnection.getDevice(device.getAddress());
-                if (isTrusted && !alertDialogBox.isAlertOpend()) {
+                boolean isMacUnSaved = dbconnection.getDevice(device.getAddress());
+                if (isMacUnSaved && !alertDialogBox.isAlertOpend()) {
                     alertDialogBox.setAlertOpend(true);
                     alertDialogBox.showTrustedDeviceAlertBox(device.getName(), device.getAddress(), dbconnection);
+                } else {
+                    Log.e(TAG,"come to else");
+                    boolean isTrusted = dbconnection.getUntrustedDevice(device.getAddress());
+                    if (!isTrusted) {
+                        Log.e(TAG,"Untrusted Device");
+                        img.setImageResource(R.drawable.scan1);
+                    }
                 }
                 //ArrayList<DeviceList> deviceList = dbconnection.getData();
 //                for (DeviceList trustedeDevice: deviceList) {
