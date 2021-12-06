@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.example.socialdistancingreminder.Model.BluetoothScan.BluetoothScan;
 import com.example.socialdistancingreminder.R;
+import com.example.socialdistancingreminder.TrustedDeivceList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -42,15 +43,6 @@ public class MainActivity extends AppCompatActivity {
         blueScan = new BluetoothScan(MainActivity.this, img);
 
 
-// ----------TRUSTED DEVICES------------
-        getTrustedDevices= (Button) findViewById(R.id.trustedDevices);
-        getTrustedDevices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openTrustedDevices();
-            }
-        });
-
 //-------------REST------------------
 
         pulicPlaceButton = (Button) findViewById(R.id.publicPlaceBtn);
@@ -64,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 thread.start();
 
                  Log.e(TAG,"isAlive Thread : "+thread.currentThread().isAlive());
-
 
                 //blueScan.startScan();
 
@@ -92,7 +83,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+// ----------TRUSTED DEVICES------------
+        getTrustedDevices= (Button) findViewById(R.id.trustedDevices);
+        getTrustedDevices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewActivity(TrustedDeivceList.class);
+            }
+        });
 
     }
 
@@ -106,9 +104,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, javaClass);
         startActivity(intent);
     }
-    public void openTrustedDevices(){
-        Intent intent = new Intent(this, testActivity2.class);
-        startActivity(intent);
 
-    }
 }
