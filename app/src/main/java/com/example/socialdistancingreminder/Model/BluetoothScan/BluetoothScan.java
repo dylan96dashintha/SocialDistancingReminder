@@ -19,13 +19,14 @@ import com.example.socialdistancingreminder.R;
 
 import java.util.ArrayList;
 
-public class BluetoothScan extends AppCompatActivity implements Runnable {
+public class BluetoothScan extends AppCompatActivity {
     private static final String TAG = "BluetoothScan";
     public Context context;
     private static boolean isFinished;
     private static DBconnection dbconnection;
     private static AlertDialogBox alertDialogBox;
     ImageView img;
+    public Thread threadDevice;
     //public boolean isAlertOpened;
     ArrayList<BluetoothDevice> foundDevices;
 
@@ -52,25 +53,59 @@ public class BluetoothScan extends AppCompatActivity implements Runnable {
         context.unregisterReceiver(receiver);
     }
 
+//////////////////////////////////////////////////////////
+    public void initializeThread() {
+        threadDevice = new Thread() {
+            @Override
+            public void run() {
 
+                while(!threadDevice.isInterrupted()) {
+                    Log.e(TAG, "stop working run method:::  "+threadDevice.isInterrupted());
+                    try {
+                        Log.e(TAG,"Thread is running: :: isFinished :: "+isFinished);
+                        if(isFinished && !alertDialogBox.isAlertOpend()) {
+                            BTAdapter.startDiscovery();
+                            isFinished = false;
+                        }
+                        Log.e(TAG,"BTAdapter :: stop:");
+                        Thread.sleep(15000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        threadDevice.interrupt();
+                    }
+                }
+            }
+        };
+    }
+
+    public void startThread() {
+        threadDevice.start();
+    }
+
+    public void stopThread() {
+        Log.e(TAG, "stop working");
+        threadDevice.interrupt();
+        Log.e(TAG, "stop working:::  "+threadDevice.isInterrupted());
+    }
+    /////////////////////////////////////////////////////
     //multi thrreading
 
-    @Override
-    public void run() {
-        while(true) {
-            try {
-                Log.e(TAG,"Thread is running: :: isFinished :: "+isFinished);
-                if(isFinished && !alertDialogBox.isAlertOpend()) {
-                    BTAdapter.startDiscovery();
-                    isFinished = false;
-                }
-                Log.e(TAG,"BTAdapter :: stop:");
-                Thread.sleep(15000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    @Override
+//    public void run() {
+//        while(true) {
+//            try {
+//                Log.e(TAG,"Thread is running: :: isFinished :: "+isFinished);
+//                if(isFinished && !alertDialogBox.isAlertOpend()) {
+//                    BTAdapter.startDiscovery();
+//                    isFinished = false;
+//                }
+//                Log.e(TAG,"BTAdapter :: stop:");
+//                Thread.sleep(15000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 
 

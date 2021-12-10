@@ -60,10 +60,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //blueScan = new BluetoothScan(MainActivity.this);
-                thread = new Thread(blueScan);
-                thread.start();
-
-                 Log.e(TAG,"isAlive Thread : "+thread.currentThread().isAlive());
+                //thread = new Thread(blueScan);
+                //thread.start();
+                blueScan.initializeThread();
+                blueScan.startThread();
+                // Log.e(TAG,"isAlive Thread : "+thread.currentThread().isAlive());
 
 
                 //blueScan.startScan();
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         trustedPlaceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                blueScan.stopThread();
             }
         });
 
