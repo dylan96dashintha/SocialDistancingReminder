@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.socialdistancingreminder.Model.DBConnection.DeviceList;
 import com.example.socialdistancingreminder.R;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -14,30 +17,29 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class ListAdapter extends ArrayAdapter<TrustedDevice> {
+public class ListAdapter extends ArrayAdapter<DeviceList> {
 
-    public ListAdapter(Context context, ArrayList<TrustedDevice> TrustedDeviceArrayList) {
 
-        super(context, R.layout.list_item, TrustedDeviceArrayList);
+    public ListAdapter(Context context, ArrayList<DeviceList> deviceList) {
+        super(context, R.layout.activity_trusted_deivce_list,deviceList);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        TrustedDevice trustedDevice = getItem(position);
+        DeviceList trustedDevice = getItem(position);
 
         if (convertView == null){
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_trusted_deivce_list,parent,false);
 
         }
 
+        TextView deviceName1 = convertView.findViewById(R.id.deviceName1);
+        TextView macAddress1 = convertView.findViewById(R.id.macAddress1);
 
-        TextView deviceName = convertView.findViewById(R.id.deviceName);
-        TextView macAddress = convertView.findViewById(R.id.macAddress);
-
-        deviceName.setText(trustedDevice.name);
-        macAddress.setText(trustedDevice.mac);
+        deviceName1.setText(trustedDevice.getDeviceName());
+        macAddress1.setText(trustedDevice.getMacAddress());
 
 
 

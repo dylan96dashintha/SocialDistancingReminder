@@ -8,6 +8,11 @@
     tools:context=".Activity.MainActivity">
     <!--set the source of an image view-->
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listview2"
+        tools:listitem="@layout/activity_trusted_deivce_list"/>
 
     <Button
         android:id="@+id/trustPlaceBtn"
@@ -39,8 +44,8 @@
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/slider"
-        android:layout_width="681dp"
-        android:layout_height="175dp"
+        android:layout_width="571dp"
+        android:layout_height="89dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
