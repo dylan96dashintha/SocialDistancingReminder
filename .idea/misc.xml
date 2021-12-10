@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ASUS/StudioProjects/SocialDistancingReminder/app/src/main/res/drawable-anydpi/ic_action_delete.xml" value="0.221875" />
         <entry key="..\:/Users/ASUS/StudioProjects/SocialDistancingReminder/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/ASUS/StudioProjects/SocialDistancingReminder/app/src/main/res/drawable/delete1.xml" value="0.221875" />
         <entry key="..\:/Users/ASUS/StudioProjects/SocialDistancingReminder/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/ASUS/StudioProjects/SocialDistancingReminder/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/StudioProjects/SocialDistancingReminder/app/src/main/res/layout/activity_test.xml" value="0.25416666666666665" />

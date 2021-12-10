@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +65,8 @@ public class TrustedDeviceList extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
 
@@ -89,19 +92,27 @@ public class TrustedDeviceList extends AppCompatActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View row = layoutInflater.inflate(R.layout.row, parent, false);
+//            Button removeDevice= (Button) findViewById(R.id.deleteDevice);
+
 
             TextView deviceName2 = row.findViewById(R.id.deviceName1);
             TextView macAddress2 = row.findViewById(R.id.macAddress1);
 
             // now set our resources on views
 
-//            deviceName1.setText(deviceList1.get(position).getDeviceName());
+
 
             deviceName2.setText(deviceList.get(position).getDeviceName());
             macAddress2.setText(deviceList.get(position).getMacAddress());
 
+//            removeDevice.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Log.e(TAG,"REMOVE DEVICE"+deviceList.get(position).getDeviceName());
+//                }
+//            });
+
             return row;
-//        }
         }
 
     }
