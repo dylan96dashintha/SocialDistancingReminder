@@ -3,7 +3,7 @@ package com.example.socialdistancingreminder.Model.DBConnection;
 public class DeviceList {
     private String macAddress;
     private String deviceName;
-
+    private String id;
     public String getMacAddress() {
         return macAddress;
     }
@@ -19,4 +19,13 @@ public class DeviceList {
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
     }
+
+    public String getDeviceId() {
+        return id;
+    }
+
+    public void setDeviceId(String id) {
+        this.id = id;
+    }
+
 }

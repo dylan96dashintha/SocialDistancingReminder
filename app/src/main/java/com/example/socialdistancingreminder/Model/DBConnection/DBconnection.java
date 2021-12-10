@@ -79,8 +79,10 @@ public class DBconnection extends SQLiteOpenHelper {
         while (cursor.moveToNext())
         {
             DeviceList deviceList = new DeviceList();
+            String device_id =cursor.getString(cursor.getColumnIndex(COL1));
             String mac_address =cursor.getString(cursor.getColumnIndex(COL2));
             String  device_name =cursor.getString(cursor.getColumnIndex(COL3));
+            deviceList.setDeviceId(device_id);
             deviceList.setMacAddress(mac_address);
             deviceList.setDeviceName(device_name);
             deviceArrayList.add(deviceList);
