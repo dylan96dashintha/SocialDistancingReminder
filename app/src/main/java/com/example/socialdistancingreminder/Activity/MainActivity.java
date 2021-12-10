@@ -4,7 +4,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import com.example.socialdistancingreminder.Model.BluetoothScan.BluetoothScan;
 import com.example.socialdistancingreminder.Model.SliderData.SliderAdapter;
 import com.example.socialdistancingreminder.Model.SliderData.SliderData;
 import com.example.socialdistancingreminder.R;
+import com.example.socialdistancingreminder.Model.TrustedDeviceModel.TrustedDeviceList;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         getTrustedDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openTrustedDevices();
+                openNewActivity(TrustedDeviceList.class);
             }
         });
 
@@ -153,9 +153,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, javaClass);
         startActivity(intent);
     }
-    public void openTrustedDevices(){
-        Intent intent = new Intent(this, testActivity2.class);
-        startActivity(intent);
-
-    }
+//    public void openTrustedDevices(){
+//        Intent intent = new Intent(this, testActivity2.class);
+//        startActivity(intent);
+//
+//    }
 }

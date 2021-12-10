@@ -1,4 +1,4 @@
-package com.example.socialdistancingreminder;
+package com.example.socialdistancingreminder.Model.TrustedDeviceModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,15 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.socialdistancingreminder.Activity.ListAdapter;
-import com.example.socialdistancingreminder.Activity.TrustedDevice;
 import com.example.socialdistancingreminder.Model.DBConnection.DBconnection;
 import com.example.socialdistancingreminder.Model.DBConnection.DeviceList;
+import com.example.socialdistancingreminder.R;
 
 import java.util.ArrayList;
 
@@ -100,9 +98,7 @@ public class TrustedDeviceList extends AppCompatActivity {
 //            deviceName1.setText(deviceList1.get(position).getDeviceName());
 
             deviceName2.setText(deviceList.get(position).getDeviceName());
-            Log.e(TAG, "MyAdapter" + deviceList.get(0).getMacAddress());
-            macAddress2.setText("MAC 1");
-//            macAddress1.setText(deviceList1.get(position).getMacAddress());
+            macAddress2.setText(deviceList.get(position).getMacAddress());
 
             return row;
 //        }

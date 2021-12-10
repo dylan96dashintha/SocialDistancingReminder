@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.socialdistancingreminder.Model.DBConnection.DeviceList;
 import com.example.socialdistancingreminder.R;
-import com.example.socialdistancingreminder.TrustedDeviceList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

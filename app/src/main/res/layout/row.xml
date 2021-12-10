@@ -8,41 +8,40 @@
     >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="248dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Main Title"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:textSize="20sp"
             android:id="@+id/deviceName1"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sub Title"
-            android:textColor="#a9a9a9"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:textSize="15sp"
-            android:id="@+id/macAddress1"
-            />
-        <TextView
-            android:id="@+id/msgtime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:layout_alignParentRight="true"
-            android:text="FUUUUUUCK"/>
+            android:layout_margin="5dp"
+            android:text="Main Title"
+            android:textColor="#000"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/macAddress1"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Sub Title"
+            android:textColor="#a9a9a9"
+            android:textSize="9sp" />
+        <!--        android:textStyle="bold"-->
+
         <!--so our layout is set-->
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button" />
+
+
 </LinearLayout>
+

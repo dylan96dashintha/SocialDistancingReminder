@@ -41,7 +41,14 @@ public class BluetoothScan extends AppCompatActivity {
         alertDialogBox.setAlertOpend(false);
         BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(BluetoothScan.this.BLUETOOTH_SERVICE);
         this.BTAdapter = bluetoothManager.getAdapter();
-
+        ///////Dummy Data
+        dbconnection.insertData("368.0--481.0--113.0","Junda","1");
+        dbconnection.insertData("8.0--481.0--13.0","Isuranga","1");
+        dbconnection.insertData("68.0--481.0--113.0","Sudesh","1");
+        dbconnection.insertData("8.0--481.0--113.0","Rashmika","1");
+        dbconnection.insertData("81.0--113.0","Mithun","0");
+        dbconnection.insertData("481.0--113.0","Pathum","0");
+        ///////Dummy Data
         IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         context.registerReceiver(receiver, intentFilter);
