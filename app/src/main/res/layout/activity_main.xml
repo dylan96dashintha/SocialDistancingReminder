@@ -8,6 +8,11 @@
     tools:context=".Activity.MainActivity">
     <!--set the source of an image view-->
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listview2"
+        tools:listitem="@layout/activity_trusted_deivce_list"/>
 
     <Button
         android:id="@+id/trustPlaceBtn"

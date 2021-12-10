@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialDistancingReminder" >
         <activity
-            android:name=".TrustedDeivceList"
+            android:name=".TrustedDeviceList"
             android:exported="true" />
         <activity android:name=".Activity.CovidStatisticActivity" />
         <activity android:name=".Activity.TrustedDevices" />

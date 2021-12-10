@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import com.example.socialdistancingreminder.Model.BluetoothScan.BluetoothScan;
 import com.example.socialdistancingreminder.R;
-import com.example.socialdistancingreminder.TrustedDeivceList;
+import com.example.socialdistancingreminder.TrustedDeviceList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
         getTrustedDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewActivity(TrustedDeivceList.class);
+
+                openNewActivity(TrustedDeviceList.class);
             }
         });
 
