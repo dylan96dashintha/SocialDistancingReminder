@@ -115,4 +115,23 @@ public class DBconnection extends SQLiteOpenHelper {
             return false;
         }
     }
+
+
+    public boolean moveToUntrustedDevices(String deviceID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL4,"0");
+
+        long result = db.update(TABLE_NAME, contentValues,"id = ?",new String[]{deviceID});
+        Log.d(TAG, "Delete:: id: "+result);
+
+
+        if (result == 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
