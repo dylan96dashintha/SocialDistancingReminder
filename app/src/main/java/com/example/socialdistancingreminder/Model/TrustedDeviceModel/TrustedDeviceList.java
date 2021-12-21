@@ -2,9 +2,11 @@ package com.example.socialdistancingreminder.Model.TrustedDeviceModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 public class TrustedDeviceList extends AppCompatActivity {
     private static final String TAG = "TrustedDeviceList";
     ListView listView;
+    DBconnection dBconnection;
 
 
     @Override
@@ -37,35 +40,12 @@ public class TrustedDeviceList extends AppCompatActivity {
 
         listView = findViewById(R.id.listview1);
 
-        DBconnection dBconnection = new DBconnection(this);
+        dBconnection= new DBconnection(this);
         ArrayList<DeviceList> deviceList1 = dBconnection.getData();
 
 //        MyAdapter adapter = new MyAdapter(this, deviceList1);
 
         listView.setAdapter(new MyAdapter(this,deviceList1));
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    Toast.makeText(TrustedDeviceList.this, "Facebook Description", Toast.LENGTH_SHORT).show();
-                }
-                if (position == 0) {
-                    Toast.makeText(TrustedDeviceList.this, "Whatsapp Description", Toast.LENGTH_SHORT).show();
-                }
-                if (position == 0) {
-                    Toast.makeText(TrustedDeviceList.this, "Twitter Description", Toast.LENGTH_SHORT).show();
-                }
-                if (position == 0) {
-                    Toast.makeText(TrustedDeviceList.this, "Instagram Description", Toast.LENGTH_SHORT).show();
-                }
-                if (position == 0) {
-                    Toast.makeText(TrustedDeviceList.this, "Youtube Description", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
 
     }
 
@@ -92,7 +72,8 @@ public class TrustedDeviceList extends AppCompatActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View row = layoutInflater.inflate(R.layout.row, parent, false);
-//            Button removeDevice= (Button) findViewById(R.id.deleteDevice);
+
+            Button removeDevice= (Button) row.findViewById(R.id.deleteDevice);
 
 
             TextView deviceName2 = row.findViewById(R.id.deviceName1);
@@ -105,12 +86,41 @@ public class TrustedDeviceList extends AppCompatActivity {
             deviceName2.setText(deviceList.get(position).getDeviceName());
             macAddress2.setText(deviceList.get(position).getMacAddress());
 
-//            removeDevice.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.e(TAG,"REMOVE DEVICE"+deviceList.get(position).getDeviceName());
-//                }
-//            });
+            removeDevice.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+///////////////////////////////ALERTTTTTTTTTTTTTTTTTTTTTTT///////////////////////////
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+                    builder1.setMessage("Confirm moving "+"'"+deviceList.get(position).getDeviceName()+"'"+ " to Untrusted Devices?");
+                    builder1.setCancelable(true);
+
+                    builder1.setNegativeButton(
+                            "No",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    builder1.setPositiveButton(
+                            "Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Boolean checkUntrusted = dBconnection.moveToUntrustedDevices(deviceList.get(position).getDeviceId());
+                                    Toast.makeText(TrustedDeviceList.this, "Moved to Untrusted", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                    startActivity(getIntent());
+
+                                }
+                            });
+
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+///////////////////////////////ALERTTTTTTTTTTTTTTTTTTTTTTT///////////////////////////
+
+                }
+            });
 
             return row;
         }
