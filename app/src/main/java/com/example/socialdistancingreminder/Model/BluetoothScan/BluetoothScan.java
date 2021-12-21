@@ -86,11 +86,13 @@ public class BluetoothScan extends AppCompatActivity {
     }
 
     public void startThread() {
+        img.setImageResource(R.drawable.scan2);
         threadDevice.start();
     }
 
     public void stopThread() {
         Log.e(TAG, "stop working");
+        img.setImageResource(R.drawable.trustedplace);
         threadDevice.interrupt();
         Log.e(TAG, "stop working:::  "+threadDevice.isInterrupted());
     }
@@ -133,6 +135,7 @@ public class BluetoothScan extends AppCompatActivity {
                 Log.e(TAG, "name: "+device.getName()+" Address: "+device.getAddress()+" device : RSSI: "+rssi);
                 boolean isMacUnSaved = dbconnection.getDevice(device.getAddress());
                 if (isMacUnSaved && !alertDialogBox.isAlertOpend()) {
+                    img.setImageResource(R.drawable.scan2);
                     alertDialogBox.setAlertOpend(true);
                     alertDialogBox.showTrustedDeviceAlertBox(device.getName(), device.getAddress(), dbconnection);
                 } else {
@@ -140,7 +143,9 @@ public class BluetoothScan extends AppCompatActivity {
                     boolean isTrusted = dbconnection.getUntrustedDevice(device.getAddress());
                     if (!isTrusted) {
                         Log.e(TAG,"Untrusted Device");
-                        img.setImageResource(R.drawable.scan1);
+                        img.setImageResource(R.drawable.warning);
+                    } else {
+                        img.setImageResource(R.drawable.scan2);
                     }
                 }
                 //ArrayList<DeviceList> deviceList = dbconnection.getData();
@@ -174,7 +179,8 @@ public class BluetoothScan extends AppCompatActivity {
 
             // When discovery cycle finished
             if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                Log.e(TAG,"Scanning finished");
+                Log.e(TAG,"Scanning finished :"+threadDevice.isInterrupted());
+                img.setImageResource(R.drawable.scan2);
                 isFinished = true;
                 if (foundDevices == null || foundDevices.isEmpty()) {
                     //Toast.makeText(MainActivity.this, "No Devices", Toast.LENGTH_LONG).show();
