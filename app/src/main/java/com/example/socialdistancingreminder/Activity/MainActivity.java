@@ -12,11 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.socialdistancingreminder.DeviceTabs;
 import com.example.socialdistancingreminder.Model.BluetoothScan.BluetoothScan;
 import com.example.socialdistancingreminder.Model.SliderData.SliderAdapter;
 import com.example.socialdistancingreminder.Model.SliderData.SliderData;
-import com.example.socialdistancingreminder.R;
 import com.example.socialdistancingreminder.Model.TrustedDeviceModel.TrustedDeviceList;
+import com.example.socialdistancingreminder.R;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
@@ -93,11 +94,9 @@ public class MainActivity extends AppCompatActivity {
         getTrustedDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewActivity(TrustedDeviceList.class);
+                openNewActivity(DeviceTabs.class);
             }
         });
-
-//-------------REST------------------
 
         pulicPlaceButton = (Button) findViewById(R.id.publicPlaceBtn);
 

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Social Distancing Reminder</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_devices_tabs">DevicesTabs</string>
+    <string name="tab_text_1">Trusted Devices</string>
+    <string name="tab_text_2">Untrusted Devices</string>
+    <string name="title_activity_device_tabs1">DeviceTabs1</string>
+    <string name="title_activity_device_tabs">DeviceTabs</string>
 </resources>
