@@ -25,6 +25,7 @@ public class BluetoothScan extends AppCompatActivity {
     private static boolean isFinished;
     private static DBconnection dbconnection;
     private static AlertDialogBox alertDialogBox;
+    private static boolean isInteru;
     ImageView img;
     public Thread threadDevice;
     //public boolean isAlertOpened;
@@ -66,7 +67,7 @@ public class BluetoothScan extends AppCompatActivity {
             @Override
             public void run() {
 
-                while(!threadDevice.isInterrupted()) {
+                while((!threadDevice.isInterrupted()) && !isInteru) {
                     Log.e(TAG, "stop working run method:::  "+threadDevice.isInterrupted());
                     try {
                         Log.e(TAG,"Thread is running: :: isFinished :: "+isFinished);
@@ -86,12 +87,14 @@ public class BluetoothScan extends AppCompatActivity {
     }
 
     public void startThread() {
+        isInteru = false;
         img.setImageResource(R.drawable.scan2);
         threadDevice.start();
     }
 
     public void stopThread() {
         Log.e(TAG, "stop working");
+        isInteru = true;
         img.setImageResource(R.drawable.trustedplace);
         threadDevice.interrupt();
         Log.e(TAG, "stop working:::  "+threadDevice.isInterrupted());
@@ -179,8 +182,9 @@ public class BluetoothScan extends AppCompatActivity {
 
             // When discovery cycle finished
             if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                Log.e(TAG,"Scanning finished :"+threadDevice.isInterrupted());
-                img.setImageResource(R.drawable.scan2);
+                if (!isInteru) {
+                    img.setImageResource(R.drawable.scan2);
+                }
                 isFinished = true;
                 if (foundDevices == null || foundDevices.isEmpty()) {
                     //Toast.makeText(MainActivity.this, "No Devices", Toast.LENGTH_LONG).show();
