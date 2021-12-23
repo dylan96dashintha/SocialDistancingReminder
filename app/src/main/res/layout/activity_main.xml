@@ -26,7 +26,7 @@
         app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <Button
         android:id="@+id/publicPlaceBtn"
@@ -40,12 +40,12 @@
         app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/slider"
-        android:layout_width="571dp"
-        android:layout_height="89dp"
+        android:layout_width="700dp"
+        android:layout_height="150dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -88,7 +88,7 @@
         android:id="@+id/trustedDevices"
         android:layout_width="114dp"
         android:layout_height="71dp"
-        android:text="Trusted Devices"
+        android:text="Devices"
         android:textColor="#000000"
         app:backgroundTint="#bdbdbd"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,8 +101,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="238dp"
-        android:layout_height="228dp"
+        android:layout_width="185dp"
+        android:layout_height="158dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

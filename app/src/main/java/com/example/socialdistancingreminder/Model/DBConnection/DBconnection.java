@@ -89,6 +89,26 @@ public class DBconnection extends SQLiteOpenHelper {
         }
         return deviceArrayList;
     }
+    public ArrayList<DeviceList> getUntrustedData()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] columns = {COL1,COL2,COL3, COL4};
+        Cursor cursor =db.query(TABLE_NAME,columns,"isTrusted = 0", null,null,null,null,null);
+        StringBuffer buffer= new StringBuffer();
+        ArrayList<DeviceList> deviceArrayList = new ArrayList<>();
+        while (cursor.moveToNext())
+        {
+            DeviceList deviceList = new DeviceList();
+            String device_id =cursor.getString(cursor.getColumnIndex(COL1));
+            String mac_address =cursor.getString(cursor.getColumnIndex(COL2));
+            String  device_name =cursor.getString(cursor.getColumnIndex(COL3));
+            deviceList.setDeviceId(device_id);
+            deviceList.setMacAddress(mac_address);
+            deviceList.setDeviceName(device_name);
+            deviceArrayList.add(deviceList);
+        }
+        return deviceArrayList;
+    }
 
     public boolean getDevice(String macAddress) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -125,7 +145,26 @@ public class DBconnection extends SQLiteOpenHelper {
         contentValues.put(COL4,"0");
 
         long result = db.update(TABLE_NAME, contentValues,"id = ?",new String[]{deviceID});
-        Log.d(TAG, "Delete:: id: "+result);
+
+        Log.d(TAG, "moveToUntrustedDevices:: id: "+result);
+
+
+        if (result == 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean deleteUntrustedDevices(String deviceID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL4,"0");
+
+//        long result = db.update(TABLE_NAME, contentValues,"id = ?",new String[]{deviceID});
+        long result = db.delete(TABLE_NAME,"id = ?",new String[]{deviceID});
+        Log.d(TAG, "deleteUntrustedDevices:: id: "+result);
 
 
         if (result == 1) {

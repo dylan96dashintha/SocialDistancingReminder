@@ -2,56 +2,46 @@ package com.example.socialdistancingreminder;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTabHost;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-import android.content.Context;
+
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.socialdistancingreminder.Model.DBConnection.DBconnection;
 import com.example.socialdistancingreminder.Model.DBConnection.DeviceList;
-import com.example.socialdistancingreminder.Model.TrustedDeviceModel.TrustedDeviceList;
 import com.example.socialdistancingreminder.placeholder.PlaceholderContent.PlaceholderItem;
-import com.example.socialdistancingreminder.databinding.FragmentTrustedDeviceListBinding;
+import com.example.socialdistancingreminder.databinding.FragmentUntrustedDeviceListBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyTrustedDeviceRecyclerViewAdapter extends RecyclerView.Adapter<MyTrustedDeviceRecyclerViewAdapter.ViewHolder> {
-
+public class UntrustedDeviceRecyclerViewAdapter extends RecyclerView.Adapter<UntrustedDeviceRecyclerViewAdapter.ViewHolder> {
     DBconnection dBconnection;
     Fragment fragment;
-    private final ArrayList<DeviceList> deviceList1;
+    private final ArrayList<DeviceList> deviceList2;
 
-    public MyTrustedDeviceRecyclerViewAdapter(ArrayList<DeviceList> items) {
+    public UntrustedDeviceRecyclerViewAdapter(ArrayList<DeviceList> items) {
 
-        deviceList1=items;
-
-
+        deviceList2=items;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-
         dBconnection= new DBconnection(parent.getContext());
+        return new ViewHolder(FragmentUntrustedDeviceListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
-
-        return new ViewHolder(FragmentTrustedDeviceListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-//        holder.mItem = deviceList1.get(position);
-
-        holder.mIdView.setText(deviceList1.get(position).getDeviceName());
-        holder.mContentView.setText(deviceList1.get(position).getMacAddress());
+        holder.mIdView.setText(deviceList2.get(position).getDeviceName());
+        holder.mContentView.setText(deviceList2.get(position).getMacAddress());
 
 
         ///////////////////////////////ALERTTTTTTTTTTTTTTTTTTTTTTT///////////////////////////
@@ -60,8 +50,7 @@ public class MyTrustedDeviceRecyclerViewAdapter extends RecyclerView.Adapter<MyT
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(holder.mButtonView.getContext());
-                builder1.setMessage("Confirm moving "+"'"+deviceList1.get(position).getDeviceName()+"'"+ " to Untrusted Devices?");
-
+                builder1.setMessage("Confirm Deleting "+"'"+deviceList2.get(position).getDeviceName());
                 builder1.setCancelable(true);
 
                 builder1.setNegativeButton(
@@ -76,10 +65,9 @@ public class MyTrustedDeviceRecyclerViewAdapter extends RecyclerView.Adapter<MyT
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
-                                Boolean checkUntrusted = dBconnection.moveToUntrustedDevices(deviceList1.get(position).getDeviceId());
-                                fragment = new TrustedDeviceFragmentList();
+                                Boolean checkUntrusted = dBconnection.deleteUntrustedDevices(deviceList2.get(position).getDeviceId());
+                                fragment = new UntrustedDeviceFragmentList();
                                 fragment.notify();
-
                             }
                         });
 
@@ -96,47 +84,23 @@ public class MyTrustedDeviceRecyclerViewAdapter extends RecyclerView.Adapter<MyT
 ///////////////////////////////ALERTTTTTTTTTTTTTTTTTTTTTTT///////////////////////////
 
 
+
     @Override
     public int getItemCount() {
-        return deviceList1.size();
+        return deviceList2.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
         public final TextView mButtonView;
-        public PlaceholderItem mItem;
 
-
-
-
-        public ViewHolder(FragmentTrustedDeviceListBinding binding) {
+        public ViewHolder(FragmentUntrustedDeviceListBinding binding) {
             super(binding.getRoot());
-            mIdView = binding.deviceName1;
-            mContentView = binding.macAddress1;
-            mButtonView = binding.deleteDevice1;
-
-
-
+            mIdView = binding.deviceName2;
+            mContentView = binding.macAddress2;
+            mButtonView = binding.deleteDevice2;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         @Override
         public String toString() {

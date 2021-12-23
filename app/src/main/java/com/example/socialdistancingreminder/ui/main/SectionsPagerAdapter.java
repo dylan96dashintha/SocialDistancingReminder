@@ -1,6 +1,8 @@
 package com.example.socialdistancingreminder.ui.main;
 
 import android.content.Context;
+import android.content.Intent;
+import android.widget.TabHost;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -10,6 +12,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.socialdistancingreminder.R;
 import com.example.socialdistancingreminder.TrustedDeviceFragmentList;
+import com.example.socialdistancingreminder.UntrustedDeviceFragmentList;
 
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -21,6 +24,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+
+
     }
 
     @Override
@@ -31,7 +36,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new TrustedDeviceFragmentList();
                 break;
             case 1:
-                fragment = new UntrustedFragment();
+                fragment = new UntrustedDeviceFragmentList();
                 break;
 
         }
